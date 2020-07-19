@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
+const VueLoaderPlugin = require("vue-loader").VueLoaderPlugin;
 const PathJoin = require("path").join;
 const templatePath = PathJoin(__dirname, "../template.html");
 

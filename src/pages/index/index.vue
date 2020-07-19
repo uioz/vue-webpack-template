@@ -5,7 +5,7 @@
 </style>
 
 <template>
-  <div class="index">hello world!</div>
+  <div class="index">hello Vue!</div>
 </template>
 <script>
 export default {

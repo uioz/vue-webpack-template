@@ -17,4 +17,12 @@ module.exports = {
       "@": srcPath,
     },
   },
+  optimization:{
+    splitChunks:{
+      chunks: 'all',
+    },
+    runtimeChunk: {
+      name: 'runtime'
+    }
+  }
 };

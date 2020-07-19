@@ -18,13 +18,16 @@ npm install eslint eshint-loader vue-loader postcss mini-css-extract-plugin css-
 在此基础上我们进一步安装 webpack 周边:
 
 - browserslist
-- webpack webpack-cli
+- webpack
+- webpack-cli
+- webpack-dev-server
 - prettier
 - sass
 - sass-loader
 - babel
 - url-loader
 - html-webpack-plugin
+- postcss-px-to-viewport
 
 进一步添加运行时软件, 这些内容不是依赖记得将 `--save-dev` 或者 `-D` 从 `npm install` 或者 `yarn add` 中移除:
 - vue
@@ -78,6 +81,30 @@ last 2 versions
 Firefox ESR
 not dead
 ```
+
+## postcss
+
+postcss 本身不提供任何实际功能, 而是提供功能的前提, 功能由插件提供.  
+刚才已经安装许多 postcss 插件:
+- postcss-import
+- postcss-px-to-viewport
+- cssnano
+- autoprefixer
+
+现在来配置他们, 在项目目录下新建 `postcss.config.js` 文件, 写入如下内容:
+```javascript
+module.exports = {
+  plugins: [
+    require("postcss-import"),
+    require("autoprefixer"),
+    require("cssnano"),
+    // see https://github.com/evrone/postcss-px-to-viewport
+    // for mobile platform
+    // require('postcss-px-to-viewport')
+  ]
+}
+```
+postcss 将会通过 webpack 配置中的 postcss-loader 来激活.
 
 # 编写配置文件
 
