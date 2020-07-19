@@ -14,6 +14,18 @@ module.exports = {
         exclude: /node_modules/,
         use: "eslint-loader",
       },
+      // see https://github.com/webpack-contrib/eslint-loader#usage
+      // see https://babeljs.io/setup#installation
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        // see https://vue-loader.vuejs.org/guide/pre-processors.html#excluding-node-modules
+        // exclude: file => (
+        //   /node_modules/.test(file) &&
+        //   !/\.vue\.js/.test(file)
+        // ),
+        loader: "babel-loader",
+      },
       {
         test: /\.vue$/,
         exclude: /node_modules/,

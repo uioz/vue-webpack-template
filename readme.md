@@ -22,11 +22,12 @@ npm install eslint eshint-loader vue-loader postcss mini-css-extract-plugin css-
 - webpack-cli
 - webpack-dev-server
 - prettier
-- sass
-- sass-loader
-- babel
 - url-loader
 - html-webpack-plugin
+
+进一步添加预处理器支持:
+- sass
+- sass-loader
 - postcss-px-to-viewport
 
 进一步添加运行时软件, 这些内容不是依赖记得将 `--save-dev` 或者 `-D` 从 `npm install` 或者 `yarn add` 中移除:
@@ -39,6 +40,12 @@ npm install eslint eshint-loader vue-loader postcss mini-css-extract-plugin css-
 - vue-loader
 - vue-template-compiler
 - vue-style-loader
+
+进一步添加 babel 支持:
+- babel-loader
+- @babel/core
+- @babel/preset-env
+- core-js@3
 
 另外建议不要关闭这个页面, 在随后的编写配置的过程中可以通过这个工具复制配置避免手动编写.
 
@@ -105,6 +112,11 @@ module.exports = {
 }
 ```
 postcss 将会通过 webpack 配置中的 postcss-loader 来激活.
+
+## babel
+
+使用 @babel/preset-env 所需要注意的一点就是, 默认他不提供 polyfill, 而 polyfill 的来源是 corejs.  
+你需要告诉 babel 我使用的是哪个版本的 corejs 以及使用何种策略来载入 polyfill(是完整一次载入还是按需载入).
 
 # 编写配置文件
 
