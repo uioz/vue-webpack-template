@@ -1,8 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader").VueLoaderPlugin;
-const PathJoin = require("path").join;
-const templatePath = PathJoin(__dirname, "../template.html");
-const distPath = PathJoin(__dirname, "../dist");
+const { templatePath,distPath,publicPath } = require('./common.js');
 
 module.exports = {
   module: {
@@ -48,7 +46,7 @@ module.exports = {
   devtool: "eval-source-map",
   devServer: {
     contentBase: distPath,
-    publicPath: "/",
+    publicPath,
     proxy: {},
     port: 8080,
     compress: true,
@@ -59,7 +57,7 @@ module.exports = {
     hotOnly: true,
     // Tells dev-server to open the browser after server had been started
     open: true,
-    quiet: false,
+    quiet: true,
   },
   plugins: [
     new VueLoaderPlugin(),

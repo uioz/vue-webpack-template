@@ -5,8 +5,7 @@ const devConfig = require("./configForDev");
 
 module.exports = function(env) {
   const lodashMerge = require("lodash.merge");
-  const PathJoin = require("path").join;
-  const distPath = PathJoin(__dirname, "../dist");
+  const { distPath } = require('./common.js')
   const RmdirSync = require("fs").rmdirSync;
 
   try {

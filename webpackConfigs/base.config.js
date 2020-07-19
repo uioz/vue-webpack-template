@@ -1,7 +1,4 @@
-const PathJoin = require("path").join;
-const contextPath = PathJoin(__dirname, "..");
-const srcPath = PathJoin(contextPath, "./src");
-const outputPath = PathJoin(contextPath, "./dist");
+const { contextPath,srcPath,outputPath,publicPath } = require('./common.js');
 
 module.exports = {
   context: contextPath,
@@ -10,7 +7,7 @@ module.exports = {
     path: outputPath,
     filename: "[name].[hash].bundle.js", // for entry modules
     chunkFilename: "[name].[hash].chunk.js", // for non-entry modules
-    publicPath: "/",
+    publicPath,
   },
   resolve: {
     alias: {
