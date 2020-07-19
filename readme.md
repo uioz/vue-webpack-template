@@ -21,7 +21,6 @@ npm install eslint eshint-loader vue-loader postcss mini-css-extract-plugin css-
 - webpack
 - webpack-cli
 - webpack-dev-server
-- prettier
 - url-loader
 - html-webpack-plugin
 
@@ -115,8 +114,46 @@ postcss 将会通过 webpack 配置中的 postcss-loader 来激活.
 
 ## babel
 
-使用 @babel/preset-env 所需要注意的一点就是, 默认他不提供 polyfill, 而 polyfill 的来源是 corejs.  
+在项目目录下创建 `babel.config.json` 文件, 我们使用 `@babel/preset-env` 进行配置.
+
+使用 `@babel/preset-env` 所需要注意的一点就是, 默认他不提供 polyfill, 而 polyfill 的来源是 corejs.  
 你需要告诉 babel 我使用的是哪个版本的 corejs 以及使用何种策略来载入 polyfill(是完整一次载入还是按需载入).
+
+```json
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs":3
+      }
+    ]
+  ]
+}
+```
+
+## prettier
+
+prettier 用于格式化源代码, 可以通过 API, commit hook, 或者 CI 工具来使用它, 使得源代码风格统一.
+
+你需要安装:
+- prettier
+- eslint-config-prettier
+
+prettier 是源代码格式化工具, 而 ESlint 是语法规范检查工具, 如果两者间不协调的话, 在使用 prettier 后 ESlint 会报错, 借助于 eslint-config-prettier 这个 eslint 这个扩展, 可以使得两者完美协作.
+
+编辑 `.eslintrc.js` 文件, 追加如下内容:
+```
+    "extends": [
+        "prettier",
+        "prettier/vue"
+    ],
+```
+
+然后添加 `prettier.config.js` 来配置 prettier `.prettierignore` 配置让 prettier 忽略那些不需要格式化的文件.  
+另外 prettier 还有编辑器扩展, 扩展可以读取本地的配置以及替换掉默认的格式化工具, 使得在编辑时的格式化就是最终的结果.  
+
 
 # 编写配置文件
 
