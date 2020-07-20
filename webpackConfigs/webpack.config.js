@@ -17,7 +17,7 @@ module.exports = function(env) {
       case "build:prod":
         return lodashMerge({ mode: "production" }, BaseConfig, BuildProdConfig);
       case "build:dev":
-        return lodashMerge({ mode: "development" }, BaseConfig, BuildDevConfig);
+        return lodashMerge({ mode: "production" }, BaseConfig, BuildDevConfig);
       case "dev":
         return lodashMerge({ mode: "development" }, BaseConfig, devConfig);
       default:
